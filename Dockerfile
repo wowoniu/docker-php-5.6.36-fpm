@@ -29,6 +29,7 @@ RUN  docker-php-ext-configure gd \
 	NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \    
 	&& docker-php-ext-install -j${NPROC} gd \
 	&& docker-php-ext-install mysqli \
+	&& docker-php-ext-install mysql \
 	&& docker-php-ext-install pdo_mysql \
 	&& docker-php-ext-install zip \
 	&& docker-php-ext-install soap \
