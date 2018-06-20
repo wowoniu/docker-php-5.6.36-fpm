@@ -42,6 +42,10 @@ RUN  docker-php-ext-configure gd \
 	&& docker-php-ext-install mcrypt \
 	&& docker-php-ext-install opcache
 
-#安装PHP COMPOSER
+#安装PHP COMPOSER 并设置中国镜像源
 RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+    && mv composer.phar /usr/local/bin/composer \
+    && composer config -g repo.packagist composer https://packagist.phpcomposer.com
+    
+#删除暂时用不到的依赖包   节省空间  
+apk del autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c    
