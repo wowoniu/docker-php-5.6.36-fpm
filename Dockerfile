@@ -5,7 +5,8 @@ MAINTAINER qiang <zhiqiangvip999@gmail.com>
 RUN echo -e "https://mirrors.ustc.edu.cn/alpine/v3.7/main\nhttps://mirrors.ustc.edu.cn/alpine/v3.7/community\n" > /etc/apk/repositories
 
 #安装拓展
-RUN apk update && apk add  \
+RUN apk update && apk add --no-cache \
+            $PHPIZE_DEPS \
 	    freetype \
 	    libjpeg-turbo \
 	    freetype-dev \
@@ -19,7 +20,9 @@ RUN apk update && apk add  \
             icu \
             icu-dev \
             libmcrypt \
-            libmcrypt-dev
+            libmcrypt-dev \
+	    && pecl install xdebug-2.5.0 \
+	    && docker-php-ext-enable xdebug
 
 RUN  docker-php-ext-configure gd \
 	    --with-gd \
