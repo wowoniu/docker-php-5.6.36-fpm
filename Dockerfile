@@ -21,6 +21,10 @@ RUN apk update && apk add --no-cache \
             icu-dev \
             libmcrypt \
             libmcrypt-dev \
+	    gcc \
+	    g++ \
+	    make \
+	    autoconf \
 	    && pecl install xdebug-2.5.0 \
 	    && pecl install memcache \
 	    && pecl install redis \ 
