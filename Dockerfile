@@ -27,8 +27,7 @@ RUN apk update && apk add --no-cache \
 	    && pecl install swoole \
 	    && docker-php-ext-enable xdebug \
 	    && docker-php-ext-enable memcache \
-	    && docker-php-ext-enable redis \
-	    && docker-php-ext-enable swoole
+	    && docker-php-ext-enable redis
 
 
 RUN  docker-php-ext-configure gd \
