@@ -23,10 +23,13 @@ RUN apk update && apk add --no-cache \
             libmcrypt-dev \
 	    && pecl install xdebug-2.5.0 \
 	    && pecl install memcache \
-	    && pecl install redis \
+	    && pecl install redis \ 
+	    && pecl install swoole \
 	    && docker-php-ext-enable xdebug \
 	    && docker-php-ext-enable memcache \
-	    && docker-php-ext-enable redis
+	    && docker-php-ext-enable redis \
+	    && docker-php-ext-enable swoole
+
 
 RUN  docker-php-ext-configure gd \
 	    --with-gd \
