@@ -28,7 +28,6 @@ RUN apk update && apk add --no-cache \
 	    && pecl install xdebug-2.5.0 \
 	    && pecl install memcache \
 	    && pecl install redis \ 
-	    && pecl install swoole \
 	    && docker-php-ext-enable xdebug \
 	    && docker-php-ext-enable memcache \
 	    && docker-php-ext-enable redis
