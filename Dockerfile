@@ -21,6 +21,10 @@ RUN apk update && apk add --no-cache \
             icu-dev \
             libmcrypt \
             libmcrypt-dev \
+	    libc-dev \
+	    bash \
+	    git \
+	    re2c \
 	    gcc \
 	    g++ \
 	    make \
@@ -55,6 +59,13 @@ RUN  docker-php-ext-configure gd \
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
     && composer config -g repo.packagist composer https://packagist.phpcomposer.com
-    
+#安装phalcon拓展
+RUN mkdir /tmp/phalcon-src 
+WORKDIR /tmp/phalcon-src
+RUN git clone git://github.com/phalcon/cphalcon.git \
+    && cd cphalcon\build \
+    && ./install \
+    && docker-php-ext-enable phalcon \
+    && rm -rf /tmp/phalcon-src
 #删除暂时用不到的依赖包   节省空间  
-RUN apk del autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c    
+RUN apk del autoconf dpkg-dev dpkg bash git file g++ gcc libc-dev make pkgconf re2c    
