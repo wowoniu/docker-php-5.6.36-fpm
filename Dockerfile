@@ -63,9 +63,8 @@ RUN curl -sS https://getcomposer.org/installer | php \
 RUN mkdir /tmp/phalcon-src 
 WORKDIR /tmp/phalcon-src
 RUN git clone git://github.com/phalcon/cphalcon.git \
-    && cd cphalcon\build \
-    && ./install \
-    && docker-php-ext-enable phalcon \
+    && ./cphalcon/build/install
+RUN docker-php-ext-enable phalcon \
     && rm -rf /tmp/phalcon-src
 #删除暂时用不到的依赖包   节省空间  
 RUN apk del autoconf dpkg-dev dpkg bash git file g++ gcc libc-dev make pkgconf re2c    
