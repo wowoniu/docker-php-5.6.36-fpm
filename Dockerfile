@@ -62,7 +62,7 @@ RUN curl -sS https://getcomposer.org/installer | php \
 #安装phalcon拓展
 RUN mkdir /tmp/phalcon-src 
 WORKDIR /tmp/phalcon-src
-RUN git clone git://github.com/phalcon/cphalcon.git \
+RUN git clone -b 1.3.4 https://github.com/phalcon/cphalcon.git \
     && cd cphalcon/build \
     && ./install \
     && docker-php-ext-enable phalcon
