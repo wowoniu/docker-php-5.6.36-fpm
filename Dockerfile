@@ -68,3 +68,7 @@ RUN git clone -b 1.3.4 https://github.com/phalcon/cphalcon.git \
     && docker-php-ext-enable phalcon
 #删除暂时用不到的依赖包   节省空间  
 RUN apk del autoconf dpkg-dev dpkg bash git file g++ gcc libc-dev make pkgconf re2c    
+
+#修复官方镜像中iconv bug
+RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
