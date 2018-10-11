@@ -29,6 +29,8 @@ RUN apk update && apk add --no-cache \
 	    g++ \
 	    make \
 	    autoconf \
+	    openldap \
+	    openldap-dev \
 	    && pecl install xdebug-2.5.0 \
 	    && pecl install memcache \
 	    && pecl install redis \ 
@@ -53,7 +55,8 @@ RUN  docker-php-ext-configure gd \
 	&& docker-php-ext-install intl \
 	&& docker-php-ext-install bcmath \
 	&& docker-php-ext-install mcrypt \
-	&& docker-php-ext-install opcache
+	&& docker-php-ext-install opcache \
+	&& docker-php-ext-install ldap
 
 #安装PHP COMPOSER 并设置中国镜像源
 RUN curl -sS https://getcomposer.org/installer | php \
